@@ -16,15 +16,3 @@ function qualitygreen_setup()
 }
 
 
-add_action( 'wpcf7_before_send_mail', 'wpcf7_add_text_to_mail_body' );
-
-function wpcf7_add_text_to_mail_body($contact_form){
-
-    $submission = WPCF7_Submission::get_instance();
-    if ( $submission ) {
-        $posted_data = $submission->get_posted_data();
-        print_r($posted_data);
-        die();
-    }
-
-}

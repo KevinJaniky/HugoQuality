@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
+require_once ABSPATH.'wp-content/plugins/dataStore/add_item.php';
 
 // listen for and process stripe charge
 add_action('wp_ajax_cf7pp_stripe_charge', 'cf7pp_stripe_charge');
@@ -186,11 +186,18 @@ function cf7pp_stripe_charge($request) {
 	}
 
 	$html_success = "
-		<table>
+		<table> 
 		<tr><td>".$options['status'].": </td><td>".$options['success']."</td></tr>
 		<tr><td>".$options['order']." #: </td><td>$txn_id</td></tr>
 		</table>
 	";
+
+	$data = [
+        'content' => $_SESSION['cf7_data']['content'],
+        'stripe_id' => $txn_id
+    ];
+    add($data);
+	// include my module
 
 	// response array
 	$response = array(

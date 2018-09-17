@@ -393,6 +393,8 @@ jQuery(document).ready(function($) {
 									if (stripe_return) {
 										window.location.href = stripe_return;
 									} else {
+										console.log(result.data);
+										// call another ajax method
 										jQuery('#'+id_long).html(result.html_success);
 									}
 									
