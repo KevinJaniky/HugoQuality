@@ -10,6 +10,7 @@ echo "<h1>Data store !</h1>";
                 <tr>
                     <th>ID</th>
                     <th>contenu</th>
+                    <th>Formulaire</th>
                     <th>stripe_token</th>
                     <th>date</th>
                 </tr>
@@ -22,14 +23,20 @@ echo "<h1>Data store !</h1>";
                         $content = (array)json_decode($d->content);
                         $keys = array_keys($content);
                         $data = "";
+                        $form = '';
                         foreach ($content as $key => $value){
-                            $data .= '<li><strong>'.$key.'</strong> : <span>'.$value.'</span></li>';
+                            if($key === 'title'){
+                                $form = $value;
+                            }else{
+                                $data .= '<li><strong>'.$key.'</strong> : <span>'.$value.'</span></li>';
+                            }
 
                         }
 
                         echo '<tr>';
                         echo '<td>'.$d->id.'</td>';
                         echo '<td>'.$data.'</td>';
+                        echo '<td>'.$form.'</td>';
                         echo '<td>'.$d->stripe_token.'</td>';
                         echo '<td>'.$d->created_at.'</td>';
                         echo '</tr>';
