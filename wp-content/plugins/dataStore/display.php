@@ -1,7 +1,5 @@
 <?php
-echo "<h1>S!</h1>";
-
-var_dump($data);
+echo "<h1>Data store !</h1>";
 ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <div class="container-fluid">
@@ -21,9 +19,17 @@ var_dump($data);
 
                     foreach ($data as $d)
                     {
+                        $content = (array)json_decode($d->content);
+                        $keys = array_keys($content);
+                        $data = "";
+                        foreach ($content as $key => $value){
+                            $data .= '<li><strong>'.$key.'</strong> : <span>'.$value.'</span></li>';
+
+                        }
+
                         echo '<tr>';
                         echo '<td>'.$d->id.'</td>';
-                        echo '<td>'.$d->content.'</td>';
+                        echo '<td>'.$data.'</td>';
                         echo '<td>'.$d->stripe_token.'</td>';
                         echo '<td>'.$d->created_at.'</td>';
                         echo '</tr>';
