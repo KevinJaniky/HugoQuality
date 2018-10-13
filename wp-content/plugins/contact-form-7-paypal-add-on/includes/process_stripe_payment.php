@@ -197,6 +197,11 @@ function cf7pp_stripe_charge($request) {
         'stripe_id' => $txn_id
     ];
     add($data);
+    $to = get_bloginfo('admin_email');
+    $subject = 'Un paiement a été effectué';
+    $message = site_url('/wp-admin/admin.php?page=data-store');
+
+    wp_mail( $to, $subject, $message);
 	// include my module
 
 	// response array

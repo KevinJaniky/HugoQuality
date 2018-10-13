@@ -60,9 +60,19 @@ function test_plugin_setup_menu()
 
 function data_store_display()
 {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'data_store';
-    $sql = 'SELECT * FROM '.$table_name;
-    $data = $wpdb->get_results($sql);
-    include ABSPATH.'wp-content/plugins/dataStore/display.php';
+    if($_GET['id']){
+        $id = $_GET['id'];
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'data_store';
+        $sql = 'SELECT * FROM '.$table_name.' WHERE id ='.$id;
+        $data = $wpdb->get_results($sql);
+        include ABSPATH.'wp-content/plugins/dataStore/displayOnce.php';
+    }else{
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'data_store';
+        $sql = 'SELECT * FROM '.$table_name;
+        $data = $wpdb->get_results($sql);
+        include ABSPATH.'wp-content/plugins/dataStore/display.php';
+    }
 }
