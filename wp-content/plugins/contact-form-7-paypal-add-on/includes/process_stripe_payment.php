@@ -199,7 +199,7 @@ function cf7pp_stripe_charge($request) {
     add($data);
     $to = get_bloginfo('admin_email');
     $subject = 'Un paiement a été effectué';
-    $message = site_url('/wp-admin/admin.php?page=data-store');
+    $message = ' Un paiement a été effectué <br> rendez vous sur : '.site_url('/wp-admin/admin.php?page=data-store');
 
     wp_mail( $to, $subject, $message);
 	// include my module
